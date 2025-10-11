@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modules\Authentication\Authentication.Api\Authentication.Api.csproj" />
+    <ProjectReference Include="..\Modules\Organization\Organization.Api\Organization.Api.csproj" />
+    <ProjectReference Include="..\Modules\Property\Property.Api\Property.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.6.5" />
+  </ItemGroup>
+
+</Project>

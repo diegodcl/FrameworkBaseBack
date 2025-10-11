@@ -1,0 +1,1 @@
+global using Core.Domain.Enities.Interfaces;
