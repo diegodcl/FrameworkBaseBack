@@ -56,7 +56,7 @@ namespace Authentication.Api
                 options.LogoutPath = "/logout";
                 options.AccessDeniedPath = "/access-denied";
                 options.Cookie.HttpOnly = true;
-                options.Cookie.MaxAge = TimeSpan.FromSeconds(60);
+                options.Cookie.MaxAge = TimeSpan.FromSeconds(3600 * 60);
                 options.Events = new CookieAuthenticationEvents
                 {
                     OnRedirectToLogin = ctx =>
