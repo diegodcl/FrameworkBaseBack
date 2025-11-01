@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Property.Data;
@@ -12,9 +13,11 @@ using Property.Data;
 namespace Property.Data.Migrations
 {
     [DbContext(typeof(PropertyDbContext))]
-    partial class PropertyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251012044349_UpdateEntities")]
+    partial class UpdateEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -254,47 +257,6 @@ namespace Property.Data.Migrations
                     b.ToTable("Structures");
                 });
 
-            modelBuilder.Entity("Property.Domain.Entities.Unit", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("BlueprintId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Column")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Identification")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool?>("IsAvailable")
-                        .HasColumnType("boolean");
-
-                    b.PrimitiveCollection<Guid[]>("OwnerId")
-                        .HasColumnType("uuid[]");
-
-                    b.PrimitiveCollection<Guid[]>("RenderId")
-                        .HasColumnType("uuid[]");
-
-                    b.Property<decimal?>("Size")
-                        .HasColumnType("numeric");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlueprintId");
-
-                    b.ToTable("Units");
-                });
-
             modelBuilder.Entity("AreaStructure", b =>
                 {
                     b.HasOne("Property.Domain.Entities.Area", null)
@@ -351,15 +313,6 @@ namespace Property.Data.Migrations
                         .HasForeignKey("BlueprintId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Blueprint");
-                });
-
-            modelBuilder.Entity("Property.Domain.Entities.Unit", b =>
-                {
-                    b.HasOne("Property.Domain.Entities.Blueprint", "Blueprint")
-                        .WithMany()
-                        .HasForeignKey("BlueprintId");
 
                     b.Navigation("Blueprint");
                 });

@@ -6,9 +6,9 @@ using Core.Domain.Entities;
 
 namespace Organization.Domain.Entities
 {
-    public class Employee : Base
+    public class Render : Base
     {
         public Person Person { get; set; }
-        public Guid PropertyId { get; set; }
+        public Guid UnitId { get; set; }
     }
 }

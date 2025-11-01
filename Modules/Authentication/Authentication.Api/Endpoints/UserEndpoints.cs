@@ -159,6 +159,7 @@ namespace Authentication.Api.Endpoints
                 UserName = user.UserName,
                 EmailConfirmed = user.EmailConfirmed,
                 CustomerId = user.CustomerId,
+                PersonId = user.PersonId,
                 Roles = roles
             };
         }

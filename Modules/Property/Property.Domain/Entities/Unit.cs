@@ -15,7 +15,7 @@ namespace Property.Domain.Entities
 
         public IList<Guid>? OwnerId { get; set; }
 
-        public IList<Guid>? ResidentId { get; set; }
+        public IList<Guid>? RenderId { get; set; }
 
         public Blueprint? Blueprint { get; set; }
 

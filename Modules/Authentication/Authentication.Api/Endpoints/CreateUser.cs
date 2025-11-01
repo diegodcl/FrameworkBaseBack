@@ -50,16 +50,31 @@ namespace Authentication.Api.Endpoints
         {
           return Results.BadRequest("Email and password are required.");
         }
-        var clientId = customerContext.Id;
+
+        if (userDataDto.PersonId is null || userDataDto.PersonId == Guid.Empty)
+        {
+          return Results.BadRequest("A valid person identifier is required to create a user.");
+        }
+
+        var clientId = userDataDto.CustomerId ?? Guid.Empty;
         if (clientId == Guid.Empty)
         {
-          return Results.BadRequest("Unable to resolve customer context for this request.");
+          clientId = customerContext.Id;
+        }
+        else if (customerContext.Id != Guid.Empty && customerContext.Id != clientId)
+        {
+          return Results.BadRequest("The selected customer does not match the current tenant context.");
+        }
+
+        if (clientId == Guid.Empty)
+        {
+          return Results.BadRequest("Unable to resolve the customer context for this request.");
         }
         var user = new User
         {
           UserName = userDataDto.UserName ?? userDataDto.Email,
           Email = userDataDto.Email,
-          PersonId = Guid.Empty,
+          PersonId = userDataDto.PersonId.Value,
           CustomerId = clientId
         };
         var result = await userManager.CreateAsync(user, userDataDto.Password);

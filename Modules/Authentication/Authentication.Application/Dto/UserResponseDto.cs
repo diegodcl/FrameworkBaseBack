@@ -12,6 +12,7 @@ namespace Authentication.Application.Dto
         public string? UserName { get; init; }
         public bool EmailConfirmed { get; init; }
         public Guid CustomerId { get; init; }
+        public Guid PersonId { get; init; }
         public IEnumerable<string> Roles { get; init; } = Enumerable.Empty<string>();
     }
 }

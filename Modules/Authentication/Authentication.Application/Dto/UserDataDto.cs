@@ -16,5 +16,7 @@ namespace Authentication.Application.Dto
         public DateTime? CreatedAt { get; init; }
         public DateTime? LastLoginAt { get; init; }
         public List<string>? Roles { get; init; } = new List<string>();
+        public Guid? PersonId { get; init; }
+        public Guid? CustomerId { get; init; }
     }
 }
