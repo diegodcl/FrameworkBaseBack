@@ -17,6 +17,7 @@ namespace Property.Data
         public DbSet<Area> Areas { get; set; }
         public DbSet<AreaType> AreaTypes { get; set; }
         public DbSet<Structure> Structures { get; set; }
+        public DbSet<Unit> Units { get; set; }
 
         public PropertyDbContext(DbContextOptions<PropertyDbContext> options) : base(options) { }
 

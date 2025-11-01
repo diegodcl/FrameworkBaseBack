@@ -8,6 +8,7 @@ namespace Organization.Application.Dto
 {
     public record PersonDto
     {
+        public Guid? Id { get; init; }
         public PersonType PersonType { get; init; }
         public string Name { get; init; }
         public string? Email { get; init; }

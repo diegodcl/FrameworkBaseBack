@@ -48,6 +48,7 @@ namespace Organization.Api
 
             services.AddScoped<IOrganizationDbContext, OrganizationDbContext>();
             services.AddTransient<ICustomerService, CustomerService>();
+            services.AddTransient<IPersonService, PersonService>();
             services.AddScoped<Customer>();
             services.AddScoped<ICustomer>(c => c.GetService<Customer>());
 

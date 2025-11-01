@@ -55,6 +55,7 @@ namespace Organization.Application.Services
 
             PersonDto personDto = new PersonDto
             {
+                Id = customer.Person.Id,
                 Name = customer.Person.Name,
                 Email = customer.Person.Email,
                 PhoneNumber = customer.Person.PhoneNumber,
@@ -64,7 +65,7 @@ namespace Organization.Application.Services
                 Reg3 = customer.Person.Reg3,
                 Reg4 = customer.Person.Reg4,
                 Reg5 = customer.Person.Reg5,
-                // PersonType = customer.Person.PersonType
+                PersonType = customer.Person is NaturalPerson ? PersonType.NaturalPerson : PersonType.LegalPerson
             };
 
 
@@ -88,6 +89,7 @@ namespace Organization.Application.Services
             {
                 PersonDto personDto = new PersonDto
                 {
+                    Id = c.Person.Id,
                     Name = c.Person.Name,
                     Email = c.Person.Email,
                     PhoneNumber = c.Person.PhoneNumber,
