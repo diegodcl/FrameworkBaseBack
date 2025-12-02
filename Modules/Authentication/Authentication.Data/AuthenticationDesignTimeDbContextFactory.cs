@@ -13,9 +13,9 @@ namespace Authentication.Data
 
         private static string GetAppSettingsPath()
         {
-            // Find the solution root by traversing up until Condominio.sln is found
+            // Find the solution root by traversing up until backendapp.sln is found
             var dir = AppContext.BaseDirectory;
-            while (!System.IO.File.Exists(System.IO.Path.Combine(dir, "Condominio.sln")))
+            while (!System.IO.File.Exists(System.IO.Path.Combine(dir, "backendapp.sln")))
             {
                 var parent = System.IO.Directory.GetParent(dir);
                 if (parent == null) break;

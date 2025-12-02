@@ -29,8 +29,15 @@ namespace Authentication.Api
     {
         public static IServiceCollection AddAuthenticationModule(this IServiceCollection services, IConfiguration configuration)
         {
+            var connectionString = configuration.GetConnectionString("AuthenticationConnection");
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                // Fallback or throw to make debugging easier
+                throw new InvalidOperationException("Connection string 'AuthenticationConnection' not found in configuration.");
+            }
+
             services.AddDbContext<AuthenticationDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("AuthenticationConnection")));
+                options.UseNpgsql(connectionString));
 
 
             // services.AddIdentity<User, IdentityRole>()

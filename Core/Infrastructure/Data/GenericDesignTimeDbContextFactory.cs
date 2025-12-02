@@ -33,9 +33,9 @@ namespace Core.Infrastructure.Data
 
         protected static string FindAppSettingsPath(string relativePath = "Modules/Authentication/Authentication.Api/appsettings.json")
         {
-            // Find the solution root by traversing up until Condominio.sln is found
+            // Find the solution root by traversing up until backendapp.sln is found
             var dir = AppContext.BaseDirectory;
-            while (!File.Exists(Path.Combine(dir, "Condominio.sln")))
+            while (!File.Exists(Path.Combine(dir, "backendapp.sln")))
             {
                 var parent = Directory.GetParent(dir);
                 if (parent == null) break;

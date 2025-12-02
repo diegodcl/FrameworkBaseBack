@@ -13,4 +13,4 @@ global using Microsoft.OpenApi.Models;
 global using Scalar.AspNetCore;
 global using Authentication.Domain.Entities;
 global using Organization.Api;
-global using Property.Api;
+

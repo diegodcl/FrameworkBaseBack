@@ -1,0 +1,60 @@
+services:
+  postgres:
+    image: postgres:17.2
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=asd!@#321
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresBaseDB:/var/lib/postgresql/data
+
+  PgAdmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - "8000:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=asd!@#321
+    volumes:
+      - pgadminData:/var/lib/pgadmin
+      
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongodbBaseData:/data/db
+
+  redis:
+    image: redis:latest
+    container_name: redis_container
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisBaseData:/data
+
+  mongoexpress:
+    image: mongo-express
+    container_name: mongoexpress
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+    depends_on:
+      - mongodb
+
+volumes:
+  postgresBaseDB:
+  mongodbBaseData:
+  redisBaseData:
+  pgadminData:

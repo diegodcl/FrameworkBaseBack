@@ -153,8 +153,14 @@ namespace Organization.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<Guid>("PersonId")
                         .HasColumnType("uuid");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("UnitId")
                         .HasColumnType("uuid");
@@ -170,7 +176,17 @@ namespace Organization.Data.Migrations
                     b.HasIndex("UnitId")
                         .HasDatabaseName("IX_Owner_UnitId");
 
-                    b.ToTable("Owners", (string)null);
+                    b.HasIndex("UnitId", "EndDate")
+                        .HasDatabaseName("IX_Owner_UnitId_EndDate")
+                        .HasFilter("\"EndDate\" IS NULL");
+
+                    b.HasIndex("UnitId", "StartDate")
+                        .HasDatabaseName("IX_Owner_UnitId_StartDate");
+
+                    b.ToTable("Owners", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_Owner_EndDate_After_StartDate", "\"EndDate\" IS NULL OR \"EndDate\" > \"StartDate\"");
+                        });
                 });
 
             modelBuilder.Entity("Organization.Domain.Entities.Person", b =>

@@ -98,6 +98,9 @@ jspm_packages/
 # dotenv environment variables file
 .env
 
+# Migrations
+**/Migrations/
+
 # IDE
 .vscode/
 .idea/
